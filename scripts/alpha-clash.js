@@ -20,16 +20,18 @@ function keyboardButtonPress(event){
 
     if(playerPressed === expectedAlphabet){
         console.log('you get a point');
-        
-        const currentScoreElement = document.getElementById('current-score');
-        const currentScoreText = currentScoreElement.innerText;
-        const currentScore = parseInt(currentScoreText);
-        
 
-        const newScore = currentScore + 1;
+        const currentScore = getTextElementValueById('current-score');
+        const updatedScore = currentScore + 1;
+        setTextElementValueById('current-score', updatedScore)
         
-        currentScoreElement.innerText = newScore
-
+        // const currentScoreElement = document.getElementById('current-score');
+        // const currentScoreText = currentScoreElement.innerText;
+        // const currentScore = parseInt(currentScoreText);
+        
+        // const newScore = currentScore + 1;
+        
+        // currentScoreElement.innerText = newScore
 
         removeBackgroundColor(expectedAlphabet)
         continueGame();
@@ -37,13 +39,21 @@ function keyboardButtonPress(event){
     else{
         console.log('You missed. You lost a life.')
 
-        const currentLifeElement = document.getElementById('current-life');
-        const currentLifeText = currentLifeElement.innerText;
-        const currentLife = parseInt(currentLifeText);
+        const currentLife = getTextElementValueById('current-life');
+        const updatedLife = currentLife -1;
+        setTextElementValueById('current-life', updatedLife);
 
-        const newLife = currentLife - 1;
+        if(updatedLife === 0){
+            gameOver()
+        }
 
-        currentLifeElement.innerText = newLife
+        // const currentLifeElement = document.getElementById('current-life');
+        // const currentLifeText = currentLifeElement.innerText;
+        // const currentLife = parseInt(currentLifeText);
+
+        // const newLife = currentLife - 1;
+
+        // currentLifeElement.innerText = newLife
     }
 }
 
@@ -61,6 +71,19 @@ function continueGame(){
 
 function play(){
     hideElementById('home-screen');
+     hideElementById('final-score')
     removeElementById('play-ground');
+
+    setTextElementValueById('current-life', 5);
+    setTextElementValueById('current-score',0)
+
     continueGame();
+}
+
+function gameOver(){
+    hideElementById('play-ground')
+    removeElementById('final-score')
+
+    const lastScore = getTextElementValueById('current-score');
+    setTextElementValueById('last-score', lastScore)
 }

@@ -19,6 +19,18 @@ function removeBackgroundColor(elementId){
     element.classList.remove('bg-amber-500')
 }
 
+function getTextElementValueById(elementId){
+    const element = document.getElementById(elementId);
+    const elementValueText = element.innerText;
+    const value = parseInt(elementValueText);
+    return value;
+}
+
+function setTextElementValueById(elementId, value){
+    const element = document.getElementById(elementId)
+    element.innerText = value
+}
+
 
 function getRandomAlphabets(){
     const alphabetSting = 'abcdefghijklmnopqrstuvwxyz';
