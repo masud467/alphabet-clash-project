@@ -11,6 +11,11 @@
 
 function keyboardButtonPress(event){
     const playerPressed = event.key;
+    // console.log('players pressed', playerPressed)
+
+    if(playerPressed === 'Enter'){
+        gameOver()
+    }
     
 
     const currentAlphabetElement = document.getElementById('current-alphabet');
@@ -86,4 +91,8 @@ function gameOver(){
 
     const lastScore = getTextElementValueById('current-score');
     setTextElementValueById('last-score', lastScore)
+
+    const currentAlphabet = getElementTextById('current-alphabet');
+    // console.log(currentAlphabet)
+    removeBackgroundColor(currentAlphabet);
 }
